@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/yanom/Desktop/DB projects.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="739"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Movie_type" custom_title="0" dock_id="1" table="4,10:mainMovie_type"/><dock_state state="000000ff00000000fd0000000100000002000003560000032dfc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000000003560000010b00ffffff0000029b0000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Movie_type" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_" freeze_columns="0"><sort/><column_widths><column index="1" value="41"/><column index="2" value="170"/><column index="3" value="148"/><column index="4" value="50"/><column index="5" value="142"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1*">With Movie_data as(select rank, date, release_date.movies, worldwide, genre, rating, type_of_production, Rotten_Tomatoes
+from Release_date join Movie_type
+on Release_date.Movies = movie_type.Movies
+join reviews 
+on movie_type.movies = reviews.Movies
+order by rank asc)
+select *,
+case
+when rating = 'PG' then 'younger'
+else 'older'
+end as Targeted_Audience,
+case
+when date like '6%' then 'summer'
+when date like '7%' then 'summer'
+when date like '8%' then 'summer'
+else 'other season'
+end as Time_Of_Year
+from movie_data;
+
+
+
+
+
+
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
